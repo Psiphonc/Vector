@@ -17,6 +17,10 @@ public:
 	Vector(Vector<T> const& v, int lo, int hi) { copyFrom(v.elem_, lo, hi); }
 	~Vector() { delete elem_; }
 
+	/*read-only*/
+	int size() { return size_; }
+	bool empty() { return size_ == 0; }
+
 	/*manipulator*/
 	Vector<T>& operator=(Vector<T> const& v);
 	T& operator[](int loc) { return elem_[loc]; }
