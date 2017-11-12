@@ -9,7 +9,7 @@ public:
 	Vector(T e = (T)0, int s = 0, int c = DEFAULT_CAPACITY)
 	{
 		elem_ = new T[capacity_ = c];
-		for (size_ = 0; size_ < s; elem_[i++] = e);
+		for (size_ = 0; size_ < s; elem_[size_++] = e);
 	}
 	Vector(T* array, int lo, int hi) { copyFrom(array, lo, hi); }
 	Vector(T* array, int n) { copyFrom(array, 0, n); }
@@ -46,7 +46,7 @@ template <typename T>
 T Vector<T>::insert(T const& e, int loc)
 {
 	expand();//check out if elem is full
-	for (int i = size_; loc < size_; --i)//move all elements which are behind loc 1 step forward 
+	for (int i = size_; i < size_; --i)//move all elements which are behind loc 1 step forward 
 	{
 		elem_[i] = elem_[i - 1];
 	}
