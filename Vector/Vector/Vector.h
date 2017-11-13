@@ -1,5 +1,6 @@
 #pragma once
 #define DEFAULT_CAPACITY 10
+#include <atomic>
 
 template <typename T>
 class Vector
@@ -18,8 +19,10 @@ public:
 	~Vector() { delete elem_; }
 
 	/*read-only*/
-	int size() { return size_; }
-	bool empty() { return size_ == 0; }
+	int size() const { return size_; }
+	bool empty() const { return size_ == 0; }
+	int search(T const& e, int lo, int hi) const;
+	int search(T const& e) const { return search(e, 0, size_); }
 
 	/*manipulator*/
 	Vector<T>& operator=(Vector<T> const& v);
@@ -28,6 +31,9 @@ public:
 	T append(T const& e);//insert an element in the last
 	int removeFrom(int lo, int hi);//remove elements in range of [lo,hi)
 	T remove(int loc);
+	void mergeSort(int lo, int hi);
+	void merge(int lo, int mi, int hi);
+	void sort() { mergeSort(0, size_); }
 
 protected:
 	T* elem_;
@@ -37,5 +43,6 @@ protected:
 	void copyFrom(T* array, int lo, int hi);//function to copy an array to a vector
 	void expand();//check if the capacity reach litmit,if so ,then alloc more 
 };
+
 
 #include "vector_implement.h"
