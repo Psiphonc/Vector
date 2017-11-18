@@ -11,6 +11,7 @@ public:
 		elem_ = new T[capacity_ = c];
 		for (size_ = 0; size_ < s; elem_[size_++] = e);
 	}
+
 	Vector(T* array, int lo, int hi) { copyFrom(array, lo, hi); }
 	Vector(T* array, int n) { copyFrom(array, 0, n); }
 	Vector(Vector<T> const& v) { copyFrom(v.elem_, 0, v.size_); }
@@ -30,10 +31,15 @@ public:
 	T append(T const& e);//insert an element in the last
 	int removeFrom(int lo, int hi);//remove elements in range of [lo,hi)
 	T remove(int loc);
+	/*sort*/
 	void mergeSort(int lo, int hi);
 	void merge(int lo, int mi, int hi);
 	void sort() { mergeSort(0, size_); }
-
+	void heapSort(int lo, int hi);
+	void quickSort(int lo, int hi);
+	int partition(int lo, int hi);
+	void shellSort(int lo, int hi);
+	void shellInsert(int lo, int hi, int step);
 protected:
 	T* elem_;
 	int capacity_;

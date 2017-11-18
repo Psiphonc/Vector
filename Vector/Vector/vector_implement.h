@@ -70,29 +70,4 @@ int Vector<T>::search(T const& e,int lo,int hi) const
 	}
 	return --lo;
 }
-template <typename T>
-void Vector<T>::mergeSort(int lo, int hi)
-{
-	if (hi - lo < 2) return;
-	int mi = (lo + hi) >> 1;
-	mergeSort(lo, mi);
-	mergeSort(mi, hi);
-	merge(lo, mi, hi);
-}
-template <typename T>
-void Vector<T>::merge(int lo, int mi, int hi)
-{
-	T* former = new T[mi - lo];
-	for (int i = 0,j=lo; j < mi; ++i,++j)
-	{
-		former[i] = elem_[j];
-	}
-	for (int i = 0, j = mi, k = lo; i < mi - lo || j < hi;)
-	{
-		if ((i < mi - lo) && ((!(j < hi) || former[i] <= elem_[j])))
-			elem_[k++] = former[i++];
-		if ((j < hi) && (!(i < mi - lo) || former[i] > elem_[j]))
-			elem_[k++] = elem_[j++];
-	}
-	delete[]former;
-}
+#include"vector_implement_sort.h"
