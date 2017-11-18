@@ -1,6 +1,5 @@
 #pragma once
 #define DEFAULT_CAPACITY 10
-#include <atomic>
 
 template <typename T>
 class Vector
@@ -16,7 +15,7 @@ public:
 	Vector(T* array, int n) { copyFrom(array, 0, n); }
 	Vector(Vector<T> const& v) { copyFrom(v.elem_, 0, v.size_); }
 	Vector(Vector<T> const& v, int lo, int hi) { copyFrom(v.elem_, lo, hi); }
-	~Vector() { delete elem_; }
+	~Vector() { delete []elem_; }
 
 	/*read-only*/
 	int size() const { return size_; }
